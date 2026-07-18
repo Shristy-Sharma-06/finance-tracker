@@ -3,6 +3,7 @@ package com.finance.finance_tracker.controller;
 import com.finance.finance_tracker.dto.TransactionRequest;
 import com.finance.finance_tracker.dto.TransactionResponse;
 import com.finance.finance_tracker.service.TransactionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class TransactionController {
     // Add Transaction
     @PostMapping
     public ResponseEntity<TransactionResponse> addTransaction(
-            @RequestBody TransactionRequest request,
+            @Valid @RequestBody TransactionRequest request,
             Authentication authentication) {
 
         return new ResponseEntity<>(
@@ -52,6 +53,7 @@ public class TransactionController {
     @PutMapping("/{id}")
     public ResponseEntity<TransactionResponse> updateTransaction(
             @PathVariable Long id,
+            @Valid
             @RequestBody TransactionRequest request,
             Authentication authentication) {
 

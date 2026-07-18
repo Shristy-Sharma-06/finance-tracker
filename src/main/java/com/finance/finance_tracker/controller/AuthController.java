@@ -3,6 +3,7 @@ package com.finance.finance_tracker.controller;
 import com.finance.finance_tracker.dto.RegisterRequest;
 import com.finance.finance_tracker.entity.User;
 import com.finance.finance_tracker.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<User> register(@Valid  @RequestBody RegisterRequest request) {
 
         User user = userService.registerUser(request);
 
@@ -28,7 +29,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
 
         return ResponseEntity.ok(userService.login(request));
     }

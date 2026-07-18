@@ -4,6 +4,7 @@ import com.finance.finance_tracker.dto.TransactionRequest;
 import com.finance.finance_tracker.dto.TransactionResponse;
 import com.finance.finance_tracker.entity.Transaction;
 import com.finance.finance_tracker.entity.User;
+import com.finance.finance_tracker.exception.ResourceNotFoundException;
 import com.finance.finance_tracker.repository.TransactionRepository;
 import com.finance.finance_tracker.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class TransactionService {
                                               Authentication authentication) {
 
         User user = userRepository.findByUsername(authentication.getName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Transaction transaction = Transaction.builder()
                 .amount(request.getAmount())
@@ -42,7 +43,7 @@ public class TransactionService {
     public List<TransactionResponse> getAllTransactions(Authentication authentication) {
 
         User user = userRepository.findByUsername(authentication.getName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         return transactionRepository.findByUser(user)
                 .stream()
@@ -55,11 +56,11 @@ public class TransactionService {
                                                   Authentication authentication) {
 
         User user = userRepository.findByUsername(authentication.getName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Transaction transaction = transactionRepository
                 .findByIdAndUser(id, user)
-                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Transaction not found"));
 
         return mapToResponse(transaction);
     }
@@ -70,11 +71,11 @@ public class TransactionService {
                                                  Authentication authentication) {
 
         User user = userRepository.findByUsername(authentication.getName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Transaction transaction = transactionRepository
                 .findByIdAndUser(id, user)
-                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Transaction not found"));
 
         transaction.setAmount(request.getAmount());
         transaction.setTransactionType(request.getTransactionType());
@@ -90,11 +91,11 @@ public class TransactionService {
                                   Authentication authentication) {
 
         User user = userRepository.findByUsername(authentication.getName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Transaction transaction = transactionRepository
                 .findByIdAndUser(id, user)
-                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Transaction not found"));
 
         transactionRepository.delete(transaction);
     }
