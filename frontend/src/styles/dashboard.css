@@ -1,0 +1,33 @@
+.dashboard-card{
+
+    border-radius:16px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.2)!important;
+
+}
+
+.dashboard-card h6{
+
+    opacity:.9;
+
+    letter-spacing:1px;
+
+}
+
+.dashboard-card h2{
+
+    margin-top:10px;
+
+    font-size:32px;
+
+}

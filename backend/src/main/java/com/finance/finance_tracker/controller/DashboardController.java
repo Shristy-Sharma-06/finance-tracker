@@ -19,11 +19,7 @@ public class DashboardController {
 
     private final DashboardService dashboardService;
 
-    //@GetMapping
-    //public DashboardResponse getDashboard(Authentication authentication){
 
-      //  return dashboardService.getDashboard(authentication);
-    //}
 
     @GetMapping
     public DashboardResponse getDashboard(Authentication authentication) {

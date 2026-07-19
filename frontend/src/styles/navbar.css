@@ -1,0 +1,25 @@
+.navbar {
+
+    height: 65px;
+
+}
+
+.navbar-brand {
+
+    font-size: 22px;
+
+}
+
+.navbar button {
+
+    border-radius: 8px;
+
+    transition: .3s;
+
+}
+
+.navbar button:hover {
+
+    transform: translateY(-2px);
+
+}
